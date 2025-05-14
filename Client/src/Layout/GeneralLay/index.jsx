@@ -8,7 +8,7 @@ export default function index() {
   return (
     <>
       <Navbar/>
-      <Box minHeight={"80vh"}>
+      <Box minHeight={"80vh"} my={5}>
         <Outlet/>
       </Box>
       <Footer/>

@@ -1,117 +1,272 @@
+import React, { useState } from "react";
 import {
-  Box,
-  Stack,
+  AppBar,
+  Toolbar,
   Typography,
+  Box,
+  Badge,
+  Stack,
   IconButton,
-  InputBase,
-  Paper,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
-import React from "react";
+import {
+  ShoppingCart,
+  FavoriteBorder,
+  PersonOutline,
+  Menu,
+} from "@mui/icons-material";
+import { motion } from "framer-motion";
+import logo from "../../../assets/logo.png";
 import { useLanguage } from "../../../Utils/LanguageContext";
-import { Login, ShoppingCart, Search } from "@mui/icons-material";
-import Logo from "../../../assets/House-Keeper.png";
-import { styled } from "@mui/material/styles";
 
 export default function Nav() {
   const { language } = useLanguage();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const Btn = [
-    { fa: "سبد خرید", en: "Cart", icon: <ShoppingCart /> },
-    { fa: "ورود مشتریان", en: "Login", icon: <Login /> },
-  ];
-
-  const SearchContainer = styled(Paper)(({ theme }) => ({
-    padding: "4px 12px",
-    display: "flex",
-    alignItems: "center",
-    width: 400,
-    borderRadius: 30,
-    boxShadow: "none",
-    border: "1px solid #ccc",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      borderColor: "#04509B",
+  const texts = {
+    fa: {
+      myAccount: "حساب کاربری من",
+      login: "ورود",
+      cart: "سبد خرید",
+      price: "۰ تومان",
     },
-  }));
+    en: {
+      myAccount: "My Account",
+      login: "Login",
+      cart: "Cart",
+      price: "$0",
+    },
+  };
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    marginLeft: theme.spacing(1),
-    flex: 1,
-    fontSize: 14,
-    direction: language === "fa" ? "rtl" : "ltr",
-  }));
+  const typo = language === "fa" ? "IranYekan" : "Arial";
+  const t = texts[language];
+  const direction = language === "fa" ? "rtl" : "ltr";
+  const favoriteCount = 3;
+
+  const MotionBox = motion(Box);
+
+  const hoverStyle = {
+    scale: 1.08,
+    boxShadow: "0px 6px 15px rgba(0,0,0,0.15)",
+  };
+
+  const tapStyle = {
+    scale: 0.96,
+  };
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   return (
-    <Stack
-      direction="row"
-      bgcolor="white"
-      py={2}
-      px={4}
-      boxShadow="0 2px 8px rgba(0,0,0,0.05)"
-      alignItems="center"
-      spacing={2}
-    >
-      {/* لوگو */}
-      <Stack Width="120px">
-        <img
-          src={Logo}
-          alt="Logo"
-          style={{ height: "30px", objectFit: "contain" }}
-        />
-      </Stack>
+    <>
+      <AppBar
+        position="static"
+        color="transparent"
+        elevation={0}
+        sx={{
+          direction,
+          px: "10%",
+          backdropFilter: "blur(10px)",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+        }}
+      >
+        <Toolbar
+          sx={{
+            justifyContent: {
+              xs: "center",
+              sm: "space-between",
+            },
+            py: 1,
+            position: "relative",
+          }}
+        >
+          {/* Logo */}
+          <MotionBox
+            whileHover={{ rotate: -2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            sx={{
+              position: {
+                xs: "absolute",
+                sm: "static",
+              },
+              left: {
+                xs: "50%",
+                sm: "auto",
+              },
+              transform: {
+                xs: "translateX(-50%)",
+                sm: "none",
+              },
+            }}
+          >
+            <Box
+              component="img"
+              src={logo}
+              alt="Logo"
+              sx={{ height: 50, width: "auto", cursor: "pointer" }}
+            />
+          </MotionBox>
 
-      {/* سرچ */}
-      <Stack flexGrow={1} display="flex"  justifyContent="center">
-        <SearchContainer variant="outlined">
-          <IconButton type="submit" sx={{ p: "6px" }} aria-label="search">
-            <Search />
-          </IconButton>
-          <StyledInputBase
-            placeholder={
-              language === "fa"
-                ? "جستجو محصول، برند و ..."
-                : "Search for product, brand..."
-            }
-            inputProps={{ "aria-label": "search products" }}
-          />
-        </SearchContainer>
-      </Stack>
-
-      {/* دکمه‌ها */}
-      <Stack>
-        <Stack direction="row" gap={2}>
-          {Btn.map((item, index) => (
-            <Stack
-              key={index}
-              px={2.5}
-              py={1}
-              border="1px solid #04509B"
-              borderRadius="25px"
-              display="flex"
-              alignItems="center"
-              gap={1}
+          {/* Icons Section */}
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={3}
+            sx={{ display: { xs: "none", sm: "flex" } }}
+          >
+            {/* Favorites */}
+            <MotionBox
+              whileHover={hoverStyle}
+              whileTap={tapStyle}
               sx={{
+                p: 1,
+                borderRadius: 2,
+                background: "linear-gradient(135deg, #ffe0e3, #ffcdd2)",
                 cursor: "pointer",
-                transition: "all 0.3s ease",
-                color: "#04509B",
-                fontSize: "14px",
-                "&:hover": {
-                  bgcolor: "#04509B",
-                  color: "white",
-                  "& svg": {
-                    color: "white",
-                  },
-                },
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              {item.icon}
-              <Typography fontWeight="bold">
-                {language === "fa" ? item.fa : item.en}
-              </Typography>
-            </Stack>
-          ))}
-        </Stack>
-      </Stack>
-    </Stack>
+              <Badge
+                badgeContent={favoriteCount}
+                color="error"
+                sx={{
+                  "& .MuiBadge-badge": {
+                    fontSize: "0.7rem",
+                    fontWeight: "bold",
+                    minWidth: 18,
+                    height: 18,
+                  },
+                }}
+              >
+                <FavoriteBorder sx={{ fontSize: 28, color: "#d32f2f" }} />
+              </Badge>
+            </MotionBox>
+
+            {/* My Account */}
+            <MotionBox
+              whileHover={hoverStyle}
+              whileTap={tapStyle}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 3,
+                background: "linear-gradient(135deg, #e3f2fd, #bbdefb)",
+                cursor: "pointer",
+              }}
+            >
+              <PersonOutline sx={{ fontSize: 28, color: "#1976d2" }} />
+              <Stack
+                direction="column"
+                alignItems={language === "fa" ? "flex-start" : "flex-end"}
+                spacing={-0.5}
+              >
+                <Typography fontFamily={typo} fontSize={14}>
+                  {t.myAccount}
+                </Typography>
+                <Typography
+                  fontFamily={typo}
+                  fontWeight={700}
+                  fontSize={13}
+                  color="#1565c0"
+                >
+                  {t.login}
+                </Typography>
+              </Stack>
+            </MotionBox>
+
+            {/* Cart */}
+            <MotionBox
+              whileHover={hoverStyle}
+              whileTap={tapStyle}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                px: 2,
+                py: 1,
+                borderRadius: 3,
+                background: "linear-gradient(135deg, #e3f2fd, #bbdefb)",
+                cursor: "pointer",
+              }}
+            >
+              <Badge badgeContent={0} color="primary">
+                <ShoppingCart sx={{ fontSize: 28, color: "#1976d2" }} />
+              </Badge>
+              <Stack
+                direction="column"
+                alignItems={language === "fa" ? "flex-start" : "flex-end"}
+                spacing={-0.5}
+              >
+                <Typography fontFamily={typo} fontSize={14}>
+                  {t.cart}
+                </Typography>
+                <Typography
+                  fontFamily={typo}
+                  fontWeight={700}
+                  fontSize={13}
+                  color="#1565c0"
+                >
+                  {t.price}
+                </Typography>
+              </Stack>
+            </MotionBox>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={toggleDrawer}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: "250px",
+            padding: 2,
+          },
+        }}
+      >
+        <List>
+          <ListItem button>
+            <ListItemText primary="صفحه اصلی" />
+          </ListItem>
+        </List>
+      </Drawer>
+
+      {/* Floating Mobile Menu Button */}
+      <Box
+        sx={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+          zIndex: 1300,
+          display: { xs: "flex", sm: "none" },
+        }}
+      >
+        <IconButton
+          onClick={toggleDrawer}
+          sx={{
+            width: 56,
+            height: 56,
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #e3f2fd, #bbdefb)",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+            "&:hover": {
+              background: "linear-gradient(135deg, #bbdefb, #90caf9)",
+            },
+          }}
+        >
+          <Menu sx={{ fontSize: 30, color: "#1976d2" }} />
+        </IconButton>
+      </Box>
+    </>
   );
 }
