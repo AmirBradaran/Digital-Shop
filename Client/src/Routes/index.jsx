@@ -6,6 +6,7 @@ import FamousBrands from "../Pages/Home/FamousBrands";
 import SuggestionsCarts from "../Pages/Home/SuggestionsCarts";
 import NewestSells from "../Pages/Home/NewestSells";
 import BestSellsHm from "../Pages/Home/BestSellsHm";
+import CategoriesCarts from "../Pages/Home/CategoriesCarts";
 
 const clientRoutes = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const clientRoutes = createBrowserRouter([
           {
             path: "slider",
             element: <SliderHm />,
+          },
+          {
+            path: "categories-carts",
+            element: <CategoriesCarts />,
           },
           {
             path: "famous-brands",

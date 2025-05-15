@@ -125,7 +125,6 @@ export default function Nav() {
               sx={{
                 p: 1,
                 borderRadius: 2,
-                background: "linear-gradient(135deg, #ffe0e3, #ffcdd2)",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
@@ -158,7 +157,8 @@ export default function Nav() {
                 px: 2,
                 py: 1,
                 borderRadius: 3,
-                background: "linear-gradient(135deg, #e3f2fd, #bbdefb)",
+                background:
+                  "linear-gradient(135deg,rgb(223, 242, 255),rgb(249, 252, 254))",
                 cursor: "pointer",
               }}
             >
@@ -193,7 +193,8 @@ export default function Nav() {
                 px: 2,
                 py: 1,
                 borderRadius: 3,
-                background: "linear-gradient(135deg, #e3f2fd, #bbdefb)",
+                background:
+                  "linear-gradient(135deg,rgb(223, 242, 255),rgb(249, 252, 254))",
                 cursor: "pointer",
               }}
             >
