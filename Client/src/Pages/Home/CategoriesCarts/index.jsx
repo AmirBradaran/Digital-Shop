@@ -48,9 +48,9 @@ const CategoriesCarts = () => {
     en: {
       title: "Product Categories",
       categories: [
-        { title: "Computers & Tablets", image: img1 },
-        { title: "Mobile Phones", image: img2 },
-        { title: "Cameras", image: img3 },
+        { title: "Computer & Tablet", image: img1 },
+        { title: "Phone", image: img2 },
+        { title: "Camera", image: img3 },
         { title: "Accessories", image: img4 },
       ],
     },
@@ -66,7 +66,6 @@ const CategoriesCarts = () => {
           sx={{
             px: 2,
             py: 6,
-            bgcolor: "#f4f7f9",
             width: "90%",
             mx: "auto",
           }}
@@ -75,8 +74,8 @@ const CategoriesCarts = () => {
             variant="h4"
             fontWeight="bold"
             mb={6}
-            color="primary"
-            textAlign={isRtl ? "right" : "left"}
+            color={"primary.dark"}
+            textAlign={isRtl ? "left" : "right"}
           >
             {content.title}
           </Typography>

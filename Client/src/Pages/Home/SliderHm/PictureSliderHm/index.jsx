@@ -18,6 +18,7 @@ import { useLanguage } from "../../../../Utils/LanguageContext";
 export default function PictureSliderHm() {
   const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const slides = {
     fa: [
@@ -58,6 +59,15 @@ export default function PictureSliderHm() {
     ],
   };
 
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <Swiper
       navigation
@@ -76,7 +86,11 @@ export default function PictureSliderHm() {
           <img
             src={item.img}
             alt={`slider ${index + 1}`}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: isMobile ? "contain" : "cover",
+            }}
           />
 
           {index === activeIndex && (
@@ -87,21 +101,30 @@ export default function PictureSliderHm() {
               transition={{ duration: 0.9, ease: "easeOut" }}
               style={{
                 position: "absolute",
-                top: "35%",
-                left: language === "fa" ? "2.5%" : "unset",
-                right: language === "en" ? "2.5%" : "unset",
+                ...(isMobile
+                  ? {
+                      bottom: "50px",
+                      marginX: "auto",
+                      transform: "translateX(-50%)",
+                    }
+                  : {
+                      top: "35%",
+                      left: language === "fa" ? "2.5%" : "unset",
+                      right: language === "en" ? "2.5%" : "unset",
+                    }),
                 background: "rgba(0, 0, 0, 0.6)",
-                padding: "15px 30px",
+                padding: isMobile ? "10px 20px" : "15px 30px",
                 borderRadius: "16px",
                 color: "#fff",
-                fontSize: "1.8rem",
+                fontSize: isMobile ? "1.2rem" : "1.8rem",
                 fontWeight: 700,
                 lineHeight: 1.5,
-                maxWidth: "80%",
+                maxWidth: "90%",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
                 textShadow: "1px 1px 4px #000",
                 textAlign: language === "fa" ? "right" : "left",
                 direction: language === "fa" ? "rtl" : "ltr",
+                zIndex: 10,
               }}
             >
               {item.text}

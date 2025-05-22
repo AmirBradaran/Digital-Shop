@@ -1,11 +1,15 @@
-import React from 'react'
-import SliderHm from './SliderHm'
-import CategoriesCarts from "./CategoriesCarts"
+import React from "react";
+import SliderHm from "./SliderHm";
+import CategoriesCarts from "./CategoriesCarts";
+import FamousBrands from "./FamousBrands"
+import SuggestionsCarts from "./SuggestionsCarts";
 export default function Home() {
   return (
     <>
-     <SliderHm/> 
-     <CategoriesCarts/>
+      <SliderHm />
+      <CategoriesCarts />
+      <FamousBrands/>
+      <SuggestionsCarts/>
     </>
-  )
+  );
 }

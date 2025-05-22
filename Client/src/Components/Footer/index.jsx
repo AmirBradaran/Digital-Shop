@@ -9,71 +9,61 @@ import {
   Divider,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  LinkedIn,
-  Translate,
-} from "@mui/icons-material";
-import DarkModeIcon from "@mui/icons-material/Bedtime";
+import digiLogo from "../../assets/logo.png";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+
 const Footer = () => {
   return (
     <Box
       sx={{
-        background: "var(--second-color)",
+        background: "linear-gradient(135deg, #003b85, #006eff)",
         color: "white",
-        padding: 6,
-        marginTop: "auto",
+        padding: { xs: 4, md: 8 },
+        mt: "auto",
         direction: "rtl",
         zIndex: 1005,
+        fontFamily: "IranYekan",
       }}
     >
-      <Grid container spacing={4}>
+      <Grid container spacing={6}>
         <Grid item xs={12} md={3}>
           <Typography
             variant="h4"
             gutterBottom
-            sx={{ fontWeight: "bold", color: "var(--third-color)" , fontFamily:"IranYekan" }}
+            sx={{ fontWeight: "bold", color: "#ffffff" }}
           >
-            صدا پلاس
+            دیجیتال شاپ
           </Typography>
-          <Typography sx={{ color: "var(--third-color)", fontSize: "1.25rem" , fontFamily:"IranYekan"}}>
-            هدفون‌هایتان، دنیای شما را تغییر می‌دهند
+          <Typography sx={{ fontSize: "1.1rem", opacity: 0.9 }}>
+            لوازم دیجیتالی، دنیای شما را تغییر می‌دهند.
           </Typography>
         </Grid>
-        <Grid item xs={6} md={2}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{ fontWeight: "bold", color: "var(--third-color)"  , fontFamily:"IranYekan"}}
-          >
+
+        <Grid item xs={6} md={3}>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
             دسترسی سریع
           </Typography>
           <List dense>
             {[
+              { text: "خانه", to: "/home" },
               { text: "درباره ما", to: "/about-us" },
-              { text: "مجله ها", to: "/magazines" },
               { text: "ورود", to: "/auth" },
-              { text: "خانه", to: "/" },
             ].map((link) => (
               <ListItem key={link.to} disableGutters>
                 <Link
                   component={RouterLink}
                   to={link.to}
                   sx={{
-                    color: "var(--third-color)",
+                    color: "white",
                     textDecoration: "none",
-                    transition:"all 0.3s",
+                    fontSize: "1rem",
+                    transition: "all 0.3s",
                     "&:hover": {
-                      textDecoration: "none",
-                      color: "var(--first-color)",
-                      translate:"10px 0"
+                      color: "#a6d1ff",
+                      pl: 1,
                     },
-                    fontWeight: "bold",
                   }}
                 >
                   {link.text}
@@ -82,56 +72,77 @@ const Footer = () => {
             ))}
           </List>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{ fontWeight: "bold", color: "var(--third-color)" , fontFamily:"IranYekan"}}
-          >
-            راه های ارتباطی
+
+        <Grid item xs={12} md={3}>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
+            راه‌های ارتباطی
           </Typography>
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <a
+          <Box sx={{ display: "flex", gap: 2, mt: 1 }}>
+            <IconButton
+              component="a"
               href="https://www.instagram.com/codemashad/"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{
+                backgroundColor: "#ffffff22",
+                "&:hover": { backgroundColor: "#ffffff44" },
+              }}
             >
-              <IconButton aria-label="Instagram">
-                <InstagramIcon sx={{ color: "white", fontSize: "30px" }} />
-              </IconButton>
-            </a>
-
-            <a
-              href="https://t.me/Codemashad_021"
+              <InstagramIcon sx={{ color: "white", fontSize: 28 }} />
+            </IconButton>
+            <IconButton
+              component="a"
+              href="https://t.me/@Codemashad_021"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{
+                backgroundColor: "#ffffff22",
+                "&:hover": { backgroundColor: "#ffffff44" },
+              }}
             >
-              <IconButton aria-label="Telegram">
-                <TelegramIcon sx={{ color: "white", fontSize: "30px" }} />
-              </IconButton>
-            </a>
-
-            <a
-              href="https://wa.me/your-whatsapp-number"
+              <TelegramIcon sx={{ color: "white", fontSize: 28 }} />
+            </IconButton>
+            <IconButton
+              component="a"
+              href="https://wa.me/09301905219"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{
+                backgroundColor: "#ffffff22",
+                "&:hover": { backgroundColor: "#ffffff44" },
+              }}
             >
-              <IconButton aria-label="WhatsApp">
-                <WhatsAppIcon sx={{ color: "white", fontSize: "30px" }} />
-              </IconButton>
-            </a>
+              <WhatsAppIcon sx={{ color: "white", fontSize: 28 }} />
+            </IconButton>
           </Box>
         </Grid>
       </Grid>
 
-      <Divider sx={{ my: 4, backgroundColor: "var(--third-color)" }} />
-      <Link to={"/"} style={{ display: "flex", justifyContent: "center" }}>
-        <img
-          src="DigiSeda.png"
-          alt=""
-          style={{ borderRadius: "100%", width: 100 }}
-        />
-      </Link>
+      <Divider sx={{ my: 5, backgroundColor: "white", opacity: 0.2 }} />
+
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <Link
+          to="/home"
+          component={RouterLink}
+          sx={{
+            display: "inline-block",
+            background: "white",
+            p: 1,
+            px: 3,
+            borderRadius: 100,
+            transition: "all 0.3s",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: "0 4px 10px rgba(255,255,255,0.2)",
+            },
+          }}
+        >
+          <img src={digiLogo} alt="logo" style={{ width: 120 }} />
+        </Link>
+        <Typography variant="body2" sx={{ mt: 2, color: "#d0e4ff" }}>
+          تمامی حقوق محفوظ است به دیجیتال شاپ .
+        </Typography>
+      </Box>
     </Box>
   );
 };
