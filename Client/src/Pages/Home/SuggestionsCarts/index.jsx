@@ -28,27 +28,42 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const StyledCard = styled(Card)(({ theme }) => ({
+  width: "100%",
   direction: "rtl",
-  borderRadius: 12,
-  boxShadow: theme.shadows[4],
+  boxShadow: theme.shadows[3],
   overflow: "hidden",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-3px)",
-    boxShadow: theme.shadows[8],
+  transition: "transform 0.35s ease, box-shadow 0.35s ease",
+  borderRadius: 20,
+  background: "rgba(255, 255, 255, 0.75)",
+  backdropFilter: "blur(8px)",
+  WebkitBackdropFilter: "blur(8px)",
+  border: "1px solid rgba(255, 255, 255, 0.3)",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  margin: "20px 0",
+  "& .swiper": {
+    borderRadius: 16,
+    overflow: "hidden",
+    marginBottom: theme.spacing(2),
+  },
+
+  "& img": {
+    width: "100%",
+    height: "22vh",
+    borderRadius: 12,
+    objectFit: "cover",
+    transition: "transform 0.3s ease",
+  },
+
+  "&:hover img": {
+    transform: "scale(1.03)",
   },
 }));
 
-const GradientButton = styled(Button)(({ theme }) => ({
-  background: `linear-gradient(90deg, ${theme.palette.error.dark}, ${theme.palette.error.main})`,
-  color: theme.palette.common.white,
-  fontWeight: "bold",
-  fontSize: "0.875rem",
-  "&:hover": {
-    background: `linear-gradient(90deg, ${theme.palette.error.main}, ${theme.palette.error.dark})`,
-  },
-}));
-
+{
+  /* دیتا کارت */
+}
 const productSuggestions = [
   {
     id: 1,
@@ -125,12 +140,105 @@ const productSuggestions = [
     image: img1,
     isFavorite: false,
   },
+  {
+    id: 6,
+    title: "لپ تاپ ایسوس VivoBook 15",
+    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
+    rating: 4.5,
+    reviews: 42,
+    oldPrice: "۸۸,۰۰۰,۰۰۰",
+    newPrice: "۷۷,۰۰۰,۰۰۰",
+    discount: "30%",
+    timeLeft: "۲ روز تا پایان تخفیف",
+    sold: 17,
+    total: 81,
+    image: img1,
+    isFavorite: false,
+  },
+  {
+    id: 7,
+    title: "لپ تاپ ایسوس VivoBook 15",
+    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
+    rating: 4.5,
+    reviews: 42,
+    oldPrice: "۸۸,۰۰۰,۰۰۰",
+    newPrice: "۷۷,۰۰۰,۰۰۰",
+    discount: "30%",
+    timeLeft: "۲ روز تا پایان تخفیف",
+    sold: 17,
+    total: 81,
+    image: img1,
+    isFavorite: false,
+  },
+  {
+    id: 8,
+    title: "لپ تاپ ایسوس VivoBook 15",
+    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
+    rating: 4.5,
+    reviews: 42,
+    oldPrice: "۸۸,۰۰۰,۰۰۰",
+    newPrice: "۷۷,۰۰۰,۰۰۰",
+    discount: "30%",
+    timeLeft: "۲ روز تا پایان تخفیف",
+    sold: 17,
+    total: 81,
+    image: img1,
+    isFavorite: false,
+  },
+  {
+    id: 9,
+    title: "لپ تاپ ایسوس VivoBook 15",
+    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
+    rating: 4.5,
+    reviews: 42,
+    oldPrice: "۸۸,۰۰۰,۰۰۰",
+    newPrice: "۷۷,۰۰۰,۰۰۰",
+    discount: "30%",
+    timeLeft: "۲ روز تا پایان تخفیف",
+    sold: 17,
+    total: 81,
+    image: img1,
+    isFavorite: false,
+  },
+  {
+    id: 10,
+    title: "لپ تاپ ایسوس VivoBook 15",
+    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
+    rating: 4.5,
+    reviews: 42,
+    oldPrice: "۸۸,۰۰۰,۰۰۰",
+    newPrice: "۷۷,۰۰۰,۰۰۰",
+    discount: "30%",
+    timeLeft: "۲ روز تا پایان تخفیف",
+    sold: 17,
+    total: 81,
+    image: img1,
+    isFavorite: false,
+  },
+  {
+    id: 5,
+    title: "لپ تاپ ایسوس VivoBook 15",
+    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
+    rating: 4.5,
+    reviews: 42,
+    oldPrice: "۸۸,۰۰۰,۰۰۰",
+    newPrice: "۷۷,۰۰۰,۰۰۰",
+    discount: "30%",
+    timeLeft: "۲ روز تا پایان تخفیف",
+    sold: 17,
+    total: 81,
+    image: img1,
+    isFavorite: false,
+  },
 ];
 
+{
+  /* بخش عکس و آیکونش */
+}
 const ProductImageSection = ({ product, toggleFavorite }) => {
   const theme = useTheme();
   return (
-    <Box sx={{ position: "relative", height: 250 }}>
+    <Box sx={{ position: "relative", height: 200 }}>
       <CardMedia
         component="img"
         height="100%"
@@ -154,10 +262,11 @@ const ProductImageSection = ({ product, toggleFavorite }) => {
       <Stack
         direction="row"
         spacing={0.5}
+        gap={1}
         sx={{
           position: "absolute",
-          bottom: 12,
-          left: 12,
+          bottom: 10,
+          left: 15,
         }}
       >
         <Tooltip title="علاقه‌مندی‌ها">
@@ -198,40 +307,53 @@ const ProductImageSection = ({ product, toggleFavorite }) => {
   );
 };
 
+{
+  /* بخش اطلاعات کارت */
+}
 const ProductInfoSection = ({ product, percent }) => {
   const theme = useTheme();
   return (
     <CardContent
       sx={{
         textAlign: "right",
-        height: 200,
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         p: 2,
       }}
     >
+      {/* بخش اطلاعات کارت */}
       <Box>
-        <Typography variant="h6" fontWeight={700} gutterBottom>
-          {product.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          {product.description}
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
+        {/* بخش اسم و کپشن کارت */}
+        <Stack>
+          <Typography variant="h6" fontWeight={700} gutterBottom>
+            {product.title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" gutterBottom>
+            {product.description}
+          </Typography>
+        </Stack>
+
+        {/* بخش امتیازها */}
+        <Stack my={1}>
           <Rating
             value={product.rating}
-            precision={0.5}
             readOnly
             size="small"
             sx={{ color: theme.palette.warning.main }}
           />
-          <Typography variant="caption" color="text.secondary" sx={{ mr: 0.5 }}>
-            ({product.reviews})
-          </Typography>
-        </Box>
+        </Stack>
         <Divider sx={{ my: 1 }} />
-        <Box sx={{ display: "flex", alignItems: "center", my: 1, gap: 0.5 }}>
+
+        {/* بخش قیمت */}
+        <Stack
+          alignItems={"center"}
+          gap={1}
+          my={1}
+          direction={"row"}
+          flexWrap={"wrap"}
+        >
           <Typography
             variant="body2"
             sx={{ textDecoration: "line-through", color: "text.secondary" }}
@@ -239,13 +361,15 @@ const ProductInfoSection = ({ product, percent }) => {
             {product.oldPrice}
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             sx={{ color: theme.palette.error.main, fontWeight: "bold" }}
           >
             {product.newPrice}
           </Typography>
-        </Box>
-        <Chip
+        </Stack>
+
+        {/* پیشنهاد ویژه */}
+        {/* <Chip
           label={product.timeLeft}
           color="warning"
           variant="outlined"
@@ -255,59 +379,43 @@ const ProductInfoSection = ({ product, percent }) => {
             borderWidth: 1,
             fontSize: "0.75rem",
           }}
-        />
-        <Box sx={{ my: 1.5 }}>
-          <Box
-            sx={{ display: "flex", justifyContent: "space-between", mb: 0.5 }}
-          >
-            <Typography variant="caption" color="text.secondary">
-              فروخته شده: {product.sold}/{product.total}
-            </Typography>
-            <Typography variant="caption" fontWeight="bold">
-              {percent}%
-            </Typography>
-          </Box>
-          <LinearProgress
-            variant="determinate"
-            value={percent}
-            sx={{
-              height: 6,
-              borderRadius: 3,
-              backgroundColor: theme.palette.grey[200],
-              "& .MuiLinearProgress-bar": {
-                borderRadius: 3,
-                background: `linear-gradient(90deg, ${theme.palette.error.light}, ${theme.palette.error.main})`,
-              },
-            }}
-          />
-        </Box>
+        /> */}
+
+        {/* بخش تعداد فروش */}
+        <Stack mb={0.5} my={1.5}>
+          <Typography variant="caption" color="text.secondary">
+            فروخته شده: {product.sold} / {product.total}
+          </Typography>
+        </Stack>
       </Box>
-      <Box sx={{ mt: 0 }}>
-        <GradientButton
+
+      {/* بخش دکمه های کارت ها */}
+      <Stack gap={2} py={0}>
+        <Button
+          color="error"
           variant="contained"
           fullWidth
           size="medium"
           sx={{
-            py: 1,
             borderRadius: 1,
-            mb: 1,
+            fontWeight: "700",
           }}
         >
           افزودن به سبد
-        </GradientButton>
+        </Button>
         <Button
           variant="outlined"
           color="primary"
           fullWidth
           size="medium"
           sx={{
-            py: 1,
             borderRadius: 1,
+            fontWeight: "600",
           }}
         >
           اطلاعات بیشتر
         </Button>
-      </Box>
+      </Stack>
     </CardContent>
   );
 };
@@ -315,7 +423,6 @@ const ProductInfoSection = ({ product, percent }) => {
 export default function ProductSwiper() {
   const [products, setProducts] = React.useState(productSuggestions);
 
-  // تابع برای تغییر وضعیت علاقه‌مندی (فیووریت)
   const toggleFavorite = (id) => {
     setProducts((prev) =>
       prev.map((item) =>
@@ -325,43 +432,40 @@ export default function ProductSwiper() {
   };
 
   return (
-    <Box
-      sx={{
-        mt: 4,
-        mb: 8,
-        maxWidth: 1200,
-        mx: "auto",
-        px: { xs: 2, md: 0 },
-      }}
-    >
+    <Box mx={12} mt={4}>
       <Swiper
+      style={{height:{xs:"none" , md:"55vh"}}}
         modules={[Navigation]}
-        spaceBetween={20}
-        slidesPerView={1}
         navigation
+        spaceBetween={100}
+        slidesPerView={1}
         breakpoints={{
-          600: { slidesPerView: 2 },
-          900: { slidesPerView: 3 },
-          1200: { slidesPerView: 4 },
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1280: { slidesPerView: 4 },
         }}
       >
         {products.map((product) => {
           const percent = Math.round((product.sold / product.total) * 100);
           return (
             <SwiperSlide key={product.id}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
+              <StyledCard
+                component={motion.div}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <StyledCard>
-                  <ProductImageSection
-                    product={product}
-                    toggleFavorite={() => toggleFavorite(product.id)}
-                  />
-                  <ProductInfoSection product={product} percent={percent} />
-                </StyledCard>
-              </motion.div>
+                <ProductImageSection
+                  product={product}
+                  toggleFavorite={() => toggleFavorite(product.id)}
+                />
+                <LinearProgress
+                  variant="determinate"
+                  value={percent}
+                  sx={{ mx: 2, height: 6, borderRadius: 2 }}
+                />
+                <ProductInfoSection product={product} percent={percent} />
+              </StyledCard>
             </SwiperSlide>
           );
         })}
