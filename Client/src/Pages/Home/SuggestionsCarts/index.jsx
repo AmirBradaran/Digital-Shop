@@ -1,428 +1,117 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Chip,
-  Divider,
-  LinearProgress,
-  Stack,
-  Rating,
-  IconButton,
-  useTheme,
-  Tooltip,
-  styled,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import img1 from "../../../assets/slider1.jpg";
-import { motion } from "framer-motion";
-
+import { Box, Button } from "@mui/material";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import rtlPlugin from "stylis-plugin-rtl";
+import { prefixer } from "stylis";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-
-const StyledCard = styled(Card)(({ theme }) => ({
-  width: "100%",
-  direction: "rtl",
-  boxShadow: theme.shadows[3],
-  overflow: "hidden",
-  transition: "transform 0.35s ease, box-shadow 0.35s ease",
-  borderRadius: 20,
-  background: "rgba(255, 255, 255, 0.75)",
-  backdropFilter: "blur(8px)",
-  WebkitBackdropFilter: "blur(8px)",
-  border: "1px solid rgba(255, 255, 255, 0.3)",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  margin: "20px 0",
-  "& .swiper": {
-    borderRadius: 16,
-    overflow: "hidden",
-    marginBottom: theme.spacing(2),
-  },
-
-  "& img": {
-    width: "100%",
-    height: "22vh",
-    borderRadius: 12,
-    objectFit: "cover",
-    transition: "transform 0.3s ease",
-  },
-
-  "&:hover img": {
-    transform: "scale(1.03)",
-  },
-}));
-
-{
-  /* دیتا کارت */
-}
-const productSuggestions = [
-  {
-    id: 1,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 2,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 3,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 4,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 5,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 6,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 7,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 8,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 9,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 10,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-  {
-    id: 5,
-    title: "لپ تاپ ایسوس VivoBook 15",
-    description: "پردازنده اینتل سلرون، 8GB رم، ۵۱۲GB SSD",
-    rating: 4.5,
-    reviews: 42,
-    oldPrice: "۸۸,۰۰۰,۰۰۰",
-    newPrice: "۷۷,۰۰۰,۰۰۰",
-    discount: "30%",
-    timeLeft: "۲ روز تا پایان تخفیف",
-    sold: 17,
-    total: 81,
-    image: img1,
-    isFavorite: false,
-  },
-];
-
-{
-  /* بخش عکس و آیکونش */
-}
-const ProductImageSection = ({ product, toggleFavorite }) => {
-  const theme = useTheme();
-  return (
-    <Box sx={{ position: "relative", height: 200 }}>
-      <CardMedia
-        component="img"
-        height="100%"
-        image={product.image}
-        alt={product.title}
-        sx={{ objectFit: "cover" }}
-      />
-      <Chip
-        label={product.discount}
-        color="error"
-        size="small"
-        sx={{
-          position: "absolute",
-          top: 12,
-          left: 12,
-          fontWeight: "bold",
-          px: 1,
-          boxShadow: theme.shadows[2],
-        }}
-      />
-      <Stack
-        direction="row"
-        spacing={0.5}
-        gap={1}
-        sx={{
-          position: "absolute",
-          bottom: 10,
-          left: 15,
-        }}
-      >
-        <Tooltip title="علاقه‌مندی‌ها">
-          <IconButton
-            size="small"
-            onClick={toggleFavorite}
-            sx={{
-              backgroundColor: "rgba(255,255,255,0.9)",
-              "&:hover": {
-                backgroundColor: theme.palette.error.light,
-                color: theme.palette.error.main,
-              },
-            }}
-          >
-            {product.isFavorite ? (
-              <FavoriteIcon color="error" fontSize="small" />
-            ) : (
-              <FavoriteBorderIcon fontSize="small" />
-            )}
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="اشتراک گذاری">
-          <IconButton
-            size="small"
-            sx={{
-              backgroundColor: "rgba(255,255,255,0.9)",
-              "&:hover": {
-                backgroundColor: theme.palette.info.light,
-                color: theme.palette.info.main,
-              },
-            }}
-          >
-            <ShareIcon fontSize="small" />
-          </IconButton>
-        </Tooltip>
-      </Stack>
-    </Box>
-  );
-};
-
-{
-  /* بخش اطلاعات کارت */
-}
-const ProductInfoSection = ({ product, percent }) => {
-  const theme = useTheme();
-  return (
-    <CardContent
-      sx={{
-        textAlign: "right",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        p: 2,
-      }}
-    >
-      {/* بخش اطلاعات کارت */}
-      <Box>
-        {/* بخش اسم و کپشن کارت */}
-        <Stack>
-          <Typography variant="h6" fontWeight={700} gutterBottom>
-            {product.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary" gutterBottom>
-            {product.description}
-          </Typography>
-        </Stack>
-
-        {/* بخش امتیازها */}
-        <Stack my={1}>
-          <Rating
-            value={product.rating}
-            readOnly
-            size="small"
-            sx={{ color: theme.palette.warning.main }}
-          />
-        </Stack>
-        <Divider sx={{ my: 1 }} />
-
-        {/* بخش قیمت */}
-        <Stack
-          alignItems={"center"}
-          gap={1}
-          my={1}
-          direction={"row"}
-          flexWrap={"wrap"}
-        >
-          <Typography
-            variant="body2"
-            sx={{ textDecoration: "line-through", color: "text.secondary" }}
-          >
-            {product.oldPrice}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ color: theme.palette.error.main, fontWeight: "bold" }}
-          >
-            {product.newPrice}
-          </Typography>
-        </Stack>
-
-        {/* پیشنهاد ویژه */}
-        {/* <Chip
-          label={product.timeLeft}
-          color="warning"
-          variant="outlined"
-          size="small"
-          sx={{
-            fontWeight: "medium",
-            borderWidth: 1,
-            fontSize: "0.75rem",
-          }}
-        /> */}
-
-        {/* بخش تعداد فروش */}
-        <Stack mb={0.5} my={1.5}>
-          <Typography variant="caption" color="text.secondary">
-            فروخته شده: {product.sold} / {product.total}
-          </Typography>
-        </Stack>
-      </Box>
-
-      {/* بخش دکمه های کارت ها */}
-      <Stack gap={2} py={0}>
-        <Button
-          color="error"
-          variant="contained"
-          fullWidth
-          size="medium"
-          sx={{
-            borderRadius: 1,
-            fontWeight: "700",
-          }}
-        >
-          افزودن به سبد
-        </Button>
-        <Button
-          variant="outlined"
-          color="primary"
-          fullWidth
-          size="medium"
-          sx={{
-            borderRadius: 1,
-            fontWeight: "600",
-          }}
-        >
-          اطلاعات بیشتر
-        </Button>
-      </Stack>
-    </CardContent>
-  );
-};
+import { useLanguage } from "../../../Utils/LanguageContext";
+import ProductCard from "./ProductCard";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import img1 from "../../../assets/slider1.jpg";
 
 export default function ProductSwiper() {
-  const [products, setProducts] = React.useState(productSuggestions);
+  const { language } = useLanguage();
+  const isRtl = language === "fa";
 
+  const theme = createTheme({
+    direction: isRtl ? "rtl" : "ltr",
+    typography: {
+      fontFamily: isRtl ? "Iran" : "Arial",
+    },
+    palette: {
+      primary: {
+        main: "#3f51b5",
+      },
+      background: {
+        default: "#fafafa",
+      },
+    },
+  });
+
+  const cache = createCache({
+    key: isRtl ? "muirtl" : "mui",
+    stylisPlugins: isRtl ? [prefixer, rtlPlugin] : [],
+  });
+
+  // محصولات اولیه
+  const initialProducts = [
+    {
+      id: 1,
+      rating: 4.5,
+      reviews: 42,
+      oldPrice: isRtl ? "۸۸,۰۰۰,۰۰۰" : "88,000,000",
+      newPrice: isRtl ? "۷۷,۰۰۰,۰۰۰" : "77,000,000",
+      discount: "30%",
+      timeLeft: isRtl ? "۲ روز تا پایان تخفیف" : "2 days left",
+      sold: 17,
+      total: 81,
+      image: img1,
+      isFavorite: false,
+      title: isRtl ? "لپ تاپ ایسوس VivoBook 15" : "Asus VivoBook 15 Laptop",
+    },
+    {
+      id: 2,
+      rating: 4.8,
+      reviews: 30,
+      oldPrice: isRtl ? "۵۰,۰۰۰,۰۰۰" : "50,000,000",
+      newPrice: isRtl ? "۴۵,۰۰۰,۰۰۰" : "45,000,000",
+      discount: "10%",
+      timeLeft: isRtl ? "۵ روز تا پایان تخفیف" : "5 days left",
+      sold: 12,
+      total: 40,
+      image: img1,
+      isFavorite: false,
+      title: isRtl
+        ? "گوشی موبایل سامسونگ Galaxy A14"
+        : "Samsung Galaxy A14 Smartphone",
+    },
+    {
+      id: 3,
+      rating: 4.2,
+      reviews: 15,
+      oldPrice: isRtl ? "۲۰,۰۰۰,۰۰۰" : "20,000,000",
+      newPrice: isRtl ? "۱۸,۰۰۰,۰۰۰" : "18,000,000",
+      discount: "15%",
+      timeLeft: isRtl ? "۳ روز تا پایان تخفیف" : "3 days left",
+      sold: 8,
+      total: 30,
+      image: img1,
+      isFavorite: false,
+      title: isRtl
+        ? "هدفون بی‌سیم سونی WH-1000XM4"
+        : "Sony WH-1000XM4 Wireless Headphones",
+    },
+  ];
+
+  const [products, setProducts] = React.useState(initialProducts);
+
+  // تابع اضافه کردن محصول جدید
+  const addProduct = () => {
+    const newId = products.length ? products[products.length - 1].id + 1 : 1;
+    const newProduct = {
+      id: newId,
+      rating: 4.0,
+      reviews: 10,
+      oldPrice: isRtl ? "۳۰,۰۰۰,۰۰۰" : "30,000,000",
+      newPrice: isRtl ? "۲۷,۰۰۰,۰۰۰" : "27,000,000",
+      discount: "10%",
+      timeLeft: isRtl ? "۷ روز تا پایان تخفیف" : "7 days left",
+      sold: 3,
+      total: 20,
+      image: img1,
+      isFavorite: false,
+      title: isRtl
+        ? "پاوربانک انکر 10000 میلی‌آمپر"
+        : "Anker 10000mAh Power Bank",
+    };
+    setProducts((prev) => [...prev, newProduct]);
+  };
+
+  // تغییر وضعیت علاقه‌مندی
   const toggleFavorite = (id) => {
     setProducts((prev) =>
       prev.map((item) =>
@@ -432,44 +121,65 @@ export default function ProductSwiper() {
   };
 
   return (
-    <Box mx={12} mt={4}>
-      <Swiper
-      style={{height:{xs:"none" , md:"55vh"}}}
-        modules={[Navigation]}
-        navigation
-        spaceBetween={100}
-        slidesPerView={1}
-        breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-          1280: { slidesPerView: 4 },
-        }}
-      >
-        {products.map((product) => {
-          const percent = Math.round((product.sold / product.total) * 100);
-          return (
-            <SwiperSlide key={product.id}>
-              <StyledCard
-                component={motion.div}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <ProductImageSection
-                  product={product}
-                  toggleFavorite={() => toggleFavorite(product.id)}
-                />
-                <LinearProgress
-                  variant="determinate"
-                  value={percent}
-                  sx={{ mx: 2, height: 6, borderRadius: 2 }}
-                />
-                <ProductInfoSection product={product} percent={percent} />
-              </StyledCard>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </Box>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <Box
+          dir={isRtl ? "rtl" : "ltr"}
+          mx={{ xs: 5, sm: 7.5, md: 9, lg: 12 }}
+          mt={6}
+          maxWidth={"100%"}
+          px={{ xs: 2, sm: 4, md: 6 }}
+        >
+          {/* دکمه افزودن محصول */}
+          <Box
+            display="flex"
+            justifyContent={isRtl ? "flex-start" : "flex-end"}
+            mb={3}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addProduct}
+              sx={{
+                fontWeight: "bold",
+                boxShadow: "0 4px 10px rgba(63,81,181,0.3)",
+                "&:hover": { boxShadow: "0 6px 14px rgba(63,81,181,0.5)" },
+              }}
+            >
+              {isRtl ? "اضافه کردن محصول جدید" : "Add New Product"}
+            </Button>
+          </Box>
+
+          {/* Swiper */}
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={30}
+            slidesPerView={1}
+            style={{ paddingBottom: "40px" }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4.5 },
+            }}
+          >
+            {products.map((product) => {
+              const percent = Math.round((product.sold / product.total) * 100);
+              return (
+                <SwiperSlide key={product.id}>
+                  <ProductCard
+                    product={product}
+                    percent={percent}
+                    toggleFavorite={() => toggleFavorite(product.id)}
+                    language={language}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </Box>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
