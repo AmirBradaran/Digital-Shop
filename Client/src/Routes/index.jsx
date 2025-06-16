@@ -4,7 +4,7 @@ import Home from "../Pages/Home";
 import SliderHm from "../Pages/Home/SliderHm";
 import FamousBrands from "../Pages/Home/FamousBrands";
 import SuggestionsCarts from "../Pages/Home/SuggestionsCarts";
-import NewestSells from "../Pages/Home/NewestSells";
+import NewestSells from "../Pages/Home/NewstSells/index";
 import BestSellsHm from "../Pages/Home/BestSellsHm";
 import CategoriesCarts from "../Pages/Home/CategoriesCarts";
 

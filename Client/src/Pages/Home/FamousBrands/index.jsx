@@ -125,7 +125,7 @@ const FamousBrands = () => {
         py: { xs: 4, sm: 8 },
         borderRadius: theme.spacing(3),
         direction: isFa ? "rtl" : "ltr",
-        maxWidth: 1600,
+        maxWidth: 1700,
         mx: "auto",
       }}
     >
