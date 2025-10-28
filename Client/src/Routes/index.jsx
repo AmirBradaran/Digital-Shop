@@ -1,54 +1,74 @@
 import { createBrowserRouter } from "react-router-dom";
-import GeneralLay from "../Layout/GeneralLay/index";
-import Home from "../Pages/Home";
-import SliderHm from "../Pages/Home/SliderHm";
-import FamousBrands from "../Pages/Home/FamousBrands";
-import SuggestionsCarts from "../Pages/Home/SuggestionsCarts";
-import NewestSells from "../Pages/Home/NewstSells/index";
-import BestSellsHm from "../Pages/Home/BestSellsHm";
-import CategoriesCarts from "../Pages/Home/CategoriesCarts";
+import GeneralLayout from "../layouts/GeneralLayout";
+import NotFound from "../pages/NotFound";
+import Home from "../pages/Home/index";
+import ProductDetails from "../pages/ProductDetails";
+import Products from "../pages/Products";
+import AboutAndContactUs from "../pages/AboutAndContactUs";
+import UserPanel from "../pages/UserPanel";
+import Profile from "../pages/UserPanel/Profile/index";
+import Orders from "../pages/UserPanel/Orders";
+import Location from "../pages/UserPanel/Location";
+import Messages from "../pages/UserPanel/Messages";
+import LoginRegister from "../pages/LoginRegister";
 
-const clientRoutes = createBrowserRouter([
+const routes = createBrowserRouter([
   {
     path: "/",
-    element: <GeneralLay />,
+    element: <GeneralLayout />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <Home />,
       },
       {
-        path: "home",
-        element: <Home />,
+        path: "product-details",
+        element: <ProductDetails />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "contact-us",
+        element: <AboutAndContactUs />,
+      },
+      {
+        path: "about-us",
+        element: <AboutAndContactUs />,
+      },
+      {
+        path: "login-register",
+        element: <LoginRegister />,
+      },
+      {
+        path: "user-panel",
+        element: <UserPanel />,
         children: [
           {
-            path: "slider",
-            element: <SliderHm />,
+            path: "user-panel/profile",
+            element: <Profile />,
           },
           {
-            path: "categories-carts",
-            element: <CategoriesCarts />,
+            path: "user-panel/orders",
+            element: <Orders />,
           },
           {
-            path: "famous-brands",
-            element: <FamousBrands />,
+            path: "user-panel/location",
+            element: <Location />,
           },
           {
-            path: "suggestions-cart",
-            element: <SuggestionsCarts />,
-          },
-          {
-            path: "newest-sells",
-            element: <NewestSells />,
-          },
-          {
-            path: "best-sells",
-            element: <BestSellsHm />,
+            path: "user-panel/messages",
+            element: <Messages />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
 ]);
 
-export default clientRoutes;
+export default routes;
