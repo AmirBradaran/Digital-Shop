@@ -1,31 +1,31 @@
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style-type: none;
-  font-family: "Iran" , 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
-  direction: rtl;
-}
-@font-face {
-  font-family: "Iran";
-  font-style: normal;
-  font-weight: normal;
-  src: url("assets/font/Woff/IRANYekanXFaNum-Regular.woff") format("woff"),
-    url("assets/Woff2/IRANYekanXFaNum-Regular.woff2") format("woff2");
-}
 @font-face {
 	font-family: "Yekan";
 	font-style: normal;
 	font-weight: bold;
 	src: url('assets/Woff/IRANYekanXFaNum-Bold.woff') format('woff'),   
-	url('assets/font/Woff2/IRANYekanXFaNum-Bold.woff2') format('woff2');	 
+	url('assets/Woff2/IRANYekanXFaNum-Regular.woff2') format('woff2');	 
 }
-:root {
-  --first-color: #000000;
-  --second-color: #26172e;
-  --seven-color: #430d4b;
-  --third-color: #fefefe;
-  --forth-color: #9ecaff;
-  --fifth-color: #00e460;
-  --six-color: #ff5338;
+
+@font-face {
+	font-family: "Yekan";
+	font-style: normal;
+	font-weight: normal;
+	src: url('assets/Woff/IRANYekanXFaNum-Regular.woff') format('woff'),   
+	url('assets/Woff2/IRANYekanXFaNum-Regular.woff2') format('woff2');
+}
+
+*{
+  text-decoration: none;
+  list-style-type: none;
+  font-family: "Yekan" !important;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+};
+
+.color{
+	background-color: #0088ff;
 }

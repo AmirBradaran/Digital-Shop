@@ -1,7 +1,7 @@
-import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material";
+import React, { useState } from 'react'
 import { RouterProvider } from 'react-router-dom'
-import clientRoutes from "./Routes/index"
+import { createTheme, ThemeProvider } from "@mui/material";
+import routes from "./routes/index";
 export default function App() {
   const theme = createTheme({
     direction: "rtl",
@@ -9,8 +9,8 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={clientRoutes} />
+        <RouterProvider router={routes}/>
       </ThemeProvider>
     </>
-  );
+  )
 }

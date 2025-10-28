@@ -1,150 +1,374 @@
 import {
   Box,
-  Grid,
-  Typography,
+  Button,
   List,
   ListItem,
-  Link,
-  IconButton,
-  Divider,
+  Stack,
+  Typography,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import digiLogo from "../../assets/logo.png";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import React from "react";
+import image1 from "../../assets/symbol-01.png";
+import image2 from "../../assets/symbol-02.png";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import { useAuth } from "../../utils/AuthContext";
 
-const Footer = () => {
+export default function Footer() {
+  const { logout } = useAuth();
+
   return (
-    <Box
-      sx={{
-        background: "linear-gradient(135deg, #003b85, #006eff)",
-        color: "white",
-        padding: { xs: 4, md: 8 },
-        mt: "auto",
-        direction: "rtl",
-        zIndex: 1005,
-        fontFamily: "IranYekan",
-      }}
-    >
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={3}>
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{ fontWeight: "bold", color: "#ffffff" }}
+    <>
+      <Box
+        sx={{
+          marginTop: "40px",
+          direction: "rtl",
+        }}
+      >
+        <Stack
+          sx={{
+            justifyContent: "center",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Stack
+            sx={{
+              backgroundColor: "#316BEA",
+              width: "91vw ",
+              height: {
+                xs: "300px",
+                lg: "230px",
+              },
+              zIndex: "2",
+              borderRadius: "15px",
+              justifyContent: {
+                xs: "center",
+                lg: "start",
+              },
+              alignItems: {
+                xs: "center",
+                lg: "normal",
+              },
+            }}
           >
-            دیجیتال شاپ
-          </Typography>
-          <Typography sx={{ fontSize: "1.1rem", opacity: 0.9 }}>
-            لوازم دیجیتالی، دنیای شما را تغییر می‌دهند.
-          </Typography>
-        </Grid>
-
-        <Grid item xs={6} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
-            دسترسی سریع
-          </Typography>
-          <List dense>
-            {[
-              { text: "خانه", to: "/home" },
-              { text: "درباره ما", to: "/about-us" },
-              { text: "ورود", to: "/auth" },
-            ].map((link) => (
-              <ListItem key={link.to} disableGutters>
-                <Link
-                  component={RouterLink}
-                  to={link.to}
+            <Box>
+              <Stack>
+                <Stack
                   sx={{
                     color: "white",
-                    textDecoration: "none",
-                    fontSize: "1rem",
-                    transition: "all 0.3s",
-                    "&:hover": {
-                      color: "#a6d1ff",
-                      pl: 1,
+                    position: {
+                      xs: "static",
+                      lg: "absolute",
+                    },
+                    marginTop: {
+                      xs: "0px",
+                      lg: "70px",
+                    },
+                    paddingRight: {
+                      xs: "0px",
+                      lg: "40px",
+                    },
+                    gap: "10px",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "25px",
+                        lg: "33px",
+                      },
+                      fontWeight: "700",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    بهترین خرید رو تجربه کن!
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "15px",
+                        lg: "19px",
+                      },
+                    }}
+                  >
+                    به مشتریان خود خدمات شگفت انگیزی ارائه می دهیم.
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Box>
+
+            <Stack
+              sx={{
+                justifyContent: {
+                  xs: "center",
+                  lg: "end",
+                },
+                flexDirection: "row",
+                paddingLeft: {
+                  xs: "0px",
+                  lg: "26px",
+                },
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  width: {
+                    xs: "70vw",
+                    lg: "44vw",
+                  },
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#F9FAFB",
+                    fontSize: {
+                      xs: "15px",
+                      lg: "17px",
                     },
                   }}
                 >
-                  {link.text}
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
+                  برای داشتن مشتریان همیشه راضی، کنترل کیفی دقیق لازم داریم.
+                  ارتباط عالی با مشتریان یکی از ویژگی های ماست. ما دائما درحال
+                  بررسی کیفیت محصولات هستیم تا مشتریانمان بهترین خدمات را دریافت
+                  کنند.
+                </Typography>
+                <Button
+                  sx={{
+                    marginTop: "15px",
+                    color: "#1F2937",
+                    backgroundColor: "white",
+                    borderRadius: "10px",
+                  }}
+                >
+                  مشاهده محصولات
+                </Button>
+              </Box>
+            </Stack>
+          </Stack>
+        </Stack>
 
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
-            راه‌های ارتباطی
-          </Typography>
-          <Box sx={{ display: "flex", gap: 2, mt: 1 }}>
-            <IconButton
-              component="a"
-              href="https://www.instagram.com/codemashad/"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                backgroundColor: "#ffffff22",
-                "&:hover": { backgroundColor: "#ffffff44" },
-              }}
-            >
-              <InstagramIcon sx={{ color: "white", fontSize: 28 }} />
-            </IconButton>
-            <IconButton
-              component="a"
-              href="https://t.me/@Codemashad_021"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                backgroundColor: "#ffffff22",
-                "&:hover": { backgroundColor: "#ffffff44" },
-              }}
-            >
-              <TelegramIcon sx={{ color: "white", fontSize: 28 }} />
-            </IconButton>
-            <IconButton
-              component="a"
-              href="https://wa.me/09301905219"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                backgroundColor: "#ffffff22",
-                "&:hover": { backgroundColor: "#ffffff44" },
-              }}
-            >
-              <WhatsAppIcon sx={{ color: "white", fontSize: 28 }} />
-            </IconButton>
-          </Box>
-        </Grid>
-      </Grid>
-
-      <Divider sx={{ my: 5, backgroundColor: "white", opacity: 0.2 }} />
-
-      <Box sx={{ textAlign: "center", mt: 4 }}>
-        <Link
-          to="/home"
-          component={RouterLink}
+        <Box
           sx={{
-            display: "inline-block",
-            background: "white",
-            p: 1,
-            px: 3,
-            borderRadius: 100,
-            transition: "all 0.3s",
-            "&:hover": {
-              transform: "scale(1.05)",
-              boxShadow: "0 4px 10px rgba(255,255,255,0.2)",
+            backgroundColor: "black",
+            height: {
+              xs: "750px",
+              md: "700px",
+              lg: "405px",
             },
+            marginTop: "-110px",
+            zIndex: "1",
           }}
         >
-          <img src={digiLogo} alt="logo" style={{ width: 120 }} />
-        </Link>
-        <Typography variant="body2" sx={{ mt: 2, color: "#d0e4ff" }}>
-          تمامی حقوق محفوظ است به دیجیتال شاپ .
-        </Typography>
-      </Box>
-    </Box>
-  );
-};
+          <Stack
+            sx={{
+              flexDirection: {
+                xs: "column",
+                lg: "row",
+              },
+              alignItems: {
+                xs: "start",
+                lg: "center",
+              },
+              height: {
+                xs: "auto",
+                lg: "100%",
+              },
+              justifyContent: "space-between ",
+              paddingX: {
+                xs: "0px",
+                lg: "100px",
+              },
+            }}
+          >
+            <Stack
+              sx={{
+                flexDirection: {
+                  xs: "column",
+                  lg: "row",
+                },
+                alignItems: {
+                  xs: "start",
+                  lg: "center",
+                },
+                height: "100%",
+                justifyContent: "space-between ",
+              }}
+            >
+              <List
+                sx={{
+                  color: "#6B7280",
+                  marginTop: {
+                    xs: "130px",
+                    lg: "65px ",
+                  },
+                }}
+              >
+                <ListItem
+                  sx={{
+                    fontSize: "20px",
+                    color: "#0EA5E9",
+                    fontWeight: "600",
+                  }}
+                >
+                  دسترسی سریع
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  تعرفه ها
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  سوالات متداول
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  تماس با ما
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  درباره ما
+                </ListItem>
+              </List>
 
-export default Footer;
+              <List
+                sx={{
+                  color: "#6B7280",
+                  marginTop: {
+                    xs: "0px",
+                    lg: "40px",
+                  },
+                }}
+              >
+                <ListItem
+                  sx={{
+                    fontSize: "20px",
+                    color: "#0EA5E9",
+                    fontWeight: "600",
+                  }}
+                >
+                  راه های ارتباطی
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                    fontSize: "14px",
+                  }}
+                >
+                  <LocationOnIcon />
+                  تهران - خیابان دماوند - خروجی اول - مجموعه هایپر استار
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  <AlternateEmailIcon />
+                  example@gmail.com
+                </ListItem>
+                <ListItem
+                  sx={{
+                    "&:hover": {
+                      color: "#0EA5E9",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  <PhoneAndroidIcon />
+                  0912345678
+                </ListItem>
+              </List>
+            </Stack>
+
+            <Stack
+              sx={{
+                flexDirection: "row ",
+                gap: "20px",
+                marginTop: {
+                  xs: "20px",
+                  lg: "40px",
+                },
+                justifyContent: {
+                  xs: "center",
+                  lg: "start",
+                },
+                alignItems: {
+                  xs: "center",
+                  lg: "start",
+                },
+                width: {
+                  xs: "100%",
+                  lg: "auto",
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: "15px",
+                  height: "120px",
+                }}
+              >
+                <img
+                  style={{
+                    width: "120px",
+                  }}
+                  src={image1}
+                  alt=""
+                />
+              </Box>
+              <Box
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: "15px",
+                  height: "120px",
+                }}
+              >
+                <img
+                  style={{
+                    width: "120px",
+                  }}
+                  src={image2}
+                  alt=""
+                />
+              </Box>
+            </Stack>
+          </Stack>
+        </Box>
+      </Box>
+    </>
+  );
+}
